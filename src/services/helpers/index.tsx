@@ -1,0 +1,53 @@
+import {
+  LineChartOutlined,
+  BookOutlined,
+  BellOutlined,
+  OrderedListOutlined,
+} from "@ant-design/icons";
+
+interface MenuItem {
+  key: string;
+  label: React.ReactNode;
+  icon?: React.ReactNode;
+  children?: MenuItem[];
+  route?: string;
+}
+
+const menuItems: MenuItem[] = [
+  {
+    key: "problems",
+    label: "Masalalar",
+    icon: <OrderedListOutlined />,
+    route: "/problems",
+  },
+  {
+    key: "training",
+    label: "Treninglar",
+    icon: <LineChartOutlined />,
+    route: "/training",
+  },
+  {
+    key: "histories",
+    label: "Tarix",
+    icon: <BookOutlined />,
+    route: "/histories",
+  },
+  {
+    key: "feedback",
+    label: "Fikrlar",
+    icon: <BellOutlined />,
+    route: "/feedback",
+  },
+];
+
+function gen4() {
+  return Math.random()
+    .toString(16)
+    .slice(-4);
+}
+
+export default {
+  menuItems,
+};
+
+export { gen4 };
