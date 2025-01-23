@@ -44,6 +44,11 @@ const User = ({ showEditModal, selectedCard }: any): JSX.Element => {
             name: "photoUrl",
             value: get(selectedCard, "photoUrl"),
           },
+          {
+            type: "string",
+            name: "email",
+            value: get(selectedCard, "email"),
+          },
         ]}
         onSuccess={(data, resetForm, query) => {
           query.invalidateQueries({ queryKey: ["students"] });
@@ -61,7 +66,7 @@ const User = ({ showEditModal, selectedCard }: any): JSX.Element => {
           return (
             <Spin spinning={isLoading} tip={t("Verifying")}>
               <div>
-                <div className="flex">
+                <div className="grid grid-cols-2 gap-4">
                   <Field
                     type="text"
                     name="firstName"
@@ -77,8 +82,6 @@ const User = ({ showEditModal, selectedCard }: any): JSX.Element => {
                     component={Fields.Input}
                     placeholder={t("Last Name")}
                   />
-                </div>
-                <div className="flex">
                   <Field
                     type="text"
                     name="username"
@@ -94,33 +97,42 @@ const User = ({ showEditModal, selectedCard }: any): JSX.Element => {
                     component={Fields.Input}
                     placeholder={t("Password")}
                   />
-                </div>
-                <Field
-                  type="text"
-                  name="phoneNumber"
-                  label={t("Phone Number")}
-                  component={Fields.Input}
-                  placeholder={t("Phone Number")}
-                  rootClassName="mr-[10px]"
-                />
-                <div>
-                  <p className="text-[#9EA3B5] px-[12px] py-[6px] bg-[#E6ECFE] dark:bg-[#454d70] rounded-[6px] inline-block mb-[12px] mr-[10px]">
-                    {t("photo")}
-                  </p>
                   <Field
-                    name="photoUrl"
-                    label={t("Photo")}
-                    placeholder={t("Photo")}
-                    rootClassName="mb-[10px]"
-                    component={Fields.FileUpload3}
+                    type="text"
+                    name="phoneNumber"
+                    label={t("Phone Number")}
+                    component={Fields.Input}
+                    placeholder={t("Phone Number")}
+                    rootClassName="mr-[10px]"
                   />
+                  <Field
+                    type="text"
+                    name="email"
+                    label={t("Email")}
+                    component={Fields.Input}
+                    placeholder={t("Email")}
+                  />
+                  <div className="col-span-2">
+                    <p className="text-[#9EA3B5] px-[12px] py-[6px] bg-[#E6ECFE] dark:bg-[#454d70] rounded-[6px] inline-block mb-[12px] mr-[10px]">
+                      {t("photo")}
+                    </p>
+                    <Field
+                      name="photoUrl"
+                      label={t("Photo")}
+                      placeholder={t("Photo")}
+                      rootClassName="mb-[8px]"
+                      component={Fields.FileUpload3}
+                    />
+                  </div>
+                  <div className="col-span-2">
+                    <Button
+                      size="large"
+                      htmlType="submit"
+                      title={t("Saqlash")}
+                      className="w-full mt-[8px]"
+                    />
+                  </div>
                 </div>
-                <Button
-                  size="large"
-                  htmlType="submit"
-                  title={t("Saqlash")}
-                  className="w-full mt-[10px]"
-                />
               </div>
             </Spin>
           );
