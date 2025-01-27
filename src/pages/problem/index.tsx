@@ -92,7 +92,7 @@ const Problem = () => {
             <Table
               columns={columns}
               dataSource={search ? filteredItems : items}
-              pagination={false}
+              pagination={{ pageSize: 12 }}
               rowKey="_id"
               className="dark:bg-gray-800 dark:text-white"
             />
