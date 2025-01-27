@@ -76,7 +76,7 @@ const Student = () => {
             columns={columns}
             dataSource={items}
             rowKey="_id"
-            pagination={false}
+            pagination={{ pageSize: 10 }}
             rowClassName={(record) =>
               (record as StudentRecord).isCorrect ? "row-green" : "row-red"
             }
