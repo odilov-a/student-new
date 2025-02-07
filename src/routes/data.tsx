@@ -7,6 +7,7 @@ const History = lazy(() => import("pages/history"));
 const NotFound = lazy(() => import("pages/notFound"));
 const Training = lazy(() => import("pages/training"));
 const Feedback = lazy(() => import("pages/feedback"));
+const HtmlTraining = lazy(() => import("pages/htmlCssCompiler"));
 const SolveProblemPage = lazy(() => import("pages/solveProblemPage"));
 
 export interface IRoute {
@@ -36,6 +37,12 @@ const privateRoutes: IRoute[] = [
     key: "training",
     title: "Treninglar",
     element: <Training />,
+  },
+  {
+    path: "/html",
+    key: "html",
+    title: "HTML&CSS",
+    element: <HtmlTraining />,
   },
   {
     path: "/problems",

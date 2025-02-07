@@ -3,6 +3,7 @@ import {
   BookOutlined,
   BellOutlined,
   OrderedListOutlined,
+  Html5Outlined,
 } from "@ant-design/icons";
 
 interface MenuItem {
@@ -25,6 +26,12 @@ const menuItems: MenuItem[] = [
     label: "Treninglar",
     icon: <LineChartOutlined />,
     route: "/training",
+  },
+  {
+    key: "html",
+    label: "HTML&CSS",
+    icon: <Html5Outlined />,
+    route: "/html",
   },
   {
     key: "histories",
