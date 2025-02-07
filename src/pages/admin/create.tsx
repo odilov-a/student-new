@@ -122,6 +122,7 @@ const User = ({ showEditModal, selectedCard }: any): JSX.Element => {
                       placeholder={t("Photo")}
                       rootClassName="mb-[8px]"
                       component={Fields.FileUpload3}
+                      accept="image/png, image/jpeg, image/jpg"
                     />
                   </div>
                   <div className="col-span-2">

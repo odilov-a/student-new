@@ -80,6 +80,16 @@ const App = (props: Props) => {
     </button>
   );
 
+  const beforeUpload = (file: FileType) => {
+    const isValidType = ["image/png", "image/jpeg", "image/jpg"].includes(
+      file.type
+    );
+    if (!isValidType) {
+      message.error("Only PNG, JPEG, and JPG files are allowed.");
+    }
+    return isValidType;
+  };
+
   const customRequest = async ({ file, onSuccess, onError }: any) => {
     try {
       const formData = new FormData();
@@ -118,6 +128,7 @@ const App = (props: Props) => {
         onPreview={handlePreview}
         onChange={handleChange}
         customRequest={customRequest}
+        beforeUpload={beforeUpload}
       >
         {fileList.length >= 1 ? null : uploadButton}
       </Upload>
