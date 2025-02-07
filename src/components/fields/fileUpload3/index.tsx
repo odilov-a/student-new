@@ -87,7 +87,12 @@ const App = (props: Props) => {
 
       const response = await axios.post(
         "http://localhost:5001/api/files/upload",
-        formData
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${storage.get("token")}`,
+          },
+        }
       );
 
       if (response.status === 200) {
