@@ -17,7 +17,7 @@ const Problem = () => {
       dataIndex: "title",
       key: "title",
       render: (text: any) => (
-        <span className="dark:text-[#e5e7eb]">{text}</span>
+        <span className="dark:text-[#e5e7eb] flex items-center justify-center flex-row w-20">{text}</span>
       ),
     },
     {

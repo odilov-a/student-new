@@ -194,7 +194,7 @@ const SolveProblemPage = () => {
             <Paragraph className="mb-4">{problem.description}</Paragraph>
           </TabPane>
           <TabPane tab={t("Test cases")} key="2" className="scrollable">
-            <div className="scrollable-container">
+            <div className="scrollable-container p-2">
               {testCases.map((testCase: any, index: number) => (
                 <div key={testCase._id}>
                   <Paragraph>
