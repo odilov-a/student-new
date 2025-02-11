@@ -216,7 +216,7 @@ const SolveProblemPage = () => {
                 {problem.tutorials ? (
                   problem.tutorials.includes("youtu") ? (
                     <iframe
-                      width="420"
+                      width="500"
                       height="345"
                       src={problem.tutorials.replace(
                         "youtu.be/",
