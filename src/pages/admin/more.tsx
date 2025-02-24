@@ -23,6 +23,12 @@ const More = ({ showMoreModal, moreModal }: any) => {
             </p>
             <b>{data.lastName}</b>
           </div>
+          <div className="flex items-center mb-[10px]">
+            <p className="mr-[20px]">
+              <p>{t("email")}:</p>
+            </p>
+            <b>{data.email}</b>
+          </div>
         </div>
         <div className="mr-[20px]">
           <div className="flex items-center mb-[10px]">

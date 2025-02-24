@@ -33,7 +33,7 @@ const User = () => {
         footer={null}
         centered
         title={t("More information")}
-        width={500}
+        width={600}
         destroyOnClose
       >
         <More {...{ showMoreModal, moreModal }} />

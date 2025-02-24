@@ -48,9 +48,6 @@ const Navigation: React.FC = () => {
           alt="Logo"
           className="mr-2 w-6 h-6 inline-block align-middle"
         />
-        <Link to="/" className="align-middle">
-          {t("KIUT")}
-        </Link>
       </div>
       {items.map((menuItem, i) => (
         <React.Fragment key={menuItem.key + i}>

@@ -191,7 +191,10 @@ const SolveProblemPage = () => {
             <Paragraph className="mb-4">
               <b>{problem.subject.title}</b>
             </Paragraph>
-            <Paragraph className="mb-4">{problem.description}</Paragraph>
+            <div
+              className="mb-4"
+              dangerouslySetInnerHTML={{ __html: problem.description }}
+            />
           </TabPane>
           <TabPane tab={t("Test cases")} key="2" className="scrollable">
             <div className="scrollable-container p-2">
