@@ -34,23 +34,13 @@ const DefaultPage = () => {
       <div className="bottom-part mt-[32px] flex justify-between items-center">
         <div className="left-part w-[500px] text-[18px] dark:text-[#9EA3B5]">
           <div className="flex justify-between">
-            <p className="mb-[10px]">{t("Admin's Telegram:")} </p>
+            <p className="mb-[10px]">{t("Admin's telegram:")} </p>
             <a
               className="text-[#222638]"
-              href="https://t.me/bIack_smile"
+              href="https://t.me/uzcontest_support"
               target="_blank"
             >
-              {t("Ruslan @bIack_smile")}
-            </a>
-          </div>
-          <div className="flex justify-between">
-            <p className="mb-[10px]">{t("Admin's Telegram:")} </p>
-            <a
-              className="text-[#222638]"
-              href="https://t.me/OdilovAkbar"
-              target="_blank"
-            >
-              {t("Akbar @OdilovAkbar")}
+              {t("Support @uzcontest_support")}
             </a>
           </div>
         </div>
