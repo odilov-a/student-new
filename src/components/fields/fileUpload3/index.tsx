@@ -96,7 +96,7 @@ const App = (props: Props) => {
       formData.append("file", file);
 
       const response = await axios.post(
-        "http://localhost:5001/api/files/upload",
+        `${process.env.REACT_APP_ROOT_FILE_UPLOAD}/files/upload`,
         formData,
         {
           headers: {
