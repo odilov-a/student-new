@@ -1,5 +1,6 @@
 import { lazy } from "react";
 
+const Shop = lazy(() => import("pages/shop"));
 const User = lazy(() => import("pages/admin"));
 const Problem = lazy(() => import("pages/problem"));
 const Default = lazy(() => import("pages/default"));
@@ -7,6 +8,7 @@ const History = lazy(() => import("pages/history"));
 const NotFound = lazy(() => import("pages/notFound"));
 const Training = lazy(() => import("pages/training"));
 const Feedback = lazy(() => import("pages/feedback"));
+const Resource = lazy(() => import("pages/resource"));
 const HtmlTraining = lazy(() => import("pages/htmlCssCompiler"));
 const SolveProblemPage = lazy(() => import("pages/solveProblemPage"));
 
@@ -43,6 +45,18 @@ const privateRoutes: IRoute[] = [
     key: "html",
     title: "HTML&CSS",
     element: <HtmlTraining />,
+  },
+  {
+    path: "/resources",
+    key: "resources",
+    title: "Resurslar",
+    element: <Resource />,
+  },
+  {
+    path: "/shop",
+    key: "shop",
+    title: "Do'kon",
+    element: <Shop />,
   },
   {
     path: "/problems",

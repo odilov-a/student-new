@@ -34,6 +34,18 @@ const menuItems: MenuItem[] = [
     route: "/html",
   },
   {
+    key: "shop",
+    label: "Do'kon",
+    icon: <BookOutlined />,
+    route: "/shop",
+  },
+  {
+    key: "resources",
+    label: "Resurslar",
+    icon: <BookOutlined />,
+    route: "/resources",
+  },
+  {
     key: "histories",
     label: "Tarix",
     icon: <BookOutlined />,
