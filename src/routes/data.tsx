@@ -9,6 +9,8 @@ const NotFound = lazy(() => import("pages/notFound"));
 const Training = lazy(() => import("pages/training"));
 const Feedback = lazy(() => import("pages/feedback"));
 const Resource = lazy(() => import("pages/resource"));
+const Test = lazy(() => import("pages/test"));
+const SolveTestPage = lazy(() => import("pages/solveTestPage"));
 const HtmlTraining = lazy(() => import("pages/htmlCssCompiler"));
 const SolveProblemPage = lazy(() => import("pages/solveProblemPage"));
 
@@ -75,6 +77,18 @@ const privateRoutes: IRoute[] = [
     key: "feedback",
     title: "Fikrlar",
     element: <Feedback />,
+  },
+  {
+    path: "/tests",
+    key: "tests",
+    title: "Testlar",
+    element: <Test />,
+  },
+  {
+    path: "/tests/:id",
+    key: "tests",
+    title: "",
+    element: <SolveTestPage />,
   },
   {
     path: "/histories",

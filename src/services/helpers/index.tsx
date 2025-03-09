@@ -22,6 +22,12 @@ const menuItems: MenuItem[] = [
     route: "/problems",
   },
   {
+    key: "tests",
+    label: "Testlar",
+    icon: <OrderedListOutlined />,
+    route: "/tests",
+  },
+  {
     key: "training",
     label: "Treninglar",
     icon: <LineChartOutlined />,
