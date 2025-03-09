@@ -16,6 +16,8 @@ const Shop: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState<boolean>(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const selectedLang = localStorage.getItem("i18nextLng") || "en";
   const { t } = useHooks();
 
@@ -52,6 +54,10 @@ const Shop: React.FC = () => {
     setIsSuccessModalOpen(false);
   };
 
+  const closeErrorModal = () => {
+    setIsErrorModalOpen(false);
+  };
+
   const confirmOrder = async () => {
     if (!selectedProduct) return;
 
@@ -75,9 +81,11 @@ const Shop: React.FC = () => {
       setIsSuccessModalOpen(true);
     } catch (error) {
       if (error instanceof Error) {
-        alert(t(error.message));
+        setErrorMessage(error.message);
+        setIsErrorModalOpen(true);
       } else {
-        alert(t("An unknown error occurred"));
+        setErrorMessage(t("An unknown error occurred"));
+        setIsErrorModalOpen(true);
       }
     } finally {
       setIsOrdering(false);
@@ -170,6 +178,32 @@ const Shop: React.FC = () => {
               <button
                 onClick={closeSuccessModal}
                 className="px-4 py-2 text-sm text-white bg-green-600 rounded-md hover:bg-green-700"
+              >
+                {t("Yopish")}
+              </button>
+            </div>
+          </Dialog.Panel>
+        </div>
+      </Dialog>
+
+      <Dialog
+        open={isErrorModalOpen}
+        onClose={closeErrorModal}
+        className="relative z-50"
+      >
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+            <Dialog.Title className="text-lg font-bold text-red-600">
+              {t("Xatolik")}
+            </Dialog.Title>
+            <Dialog.Description className="mt-2 text-gray-600">
+              {t("Point yetarli emas!!!")}
+            </Dialog.Description>
+            <div className="mt-4 flex justify-end">
+              <button
+                onClick={closeErrorModal}
+                className="px-4 py-2 text-sm text-white bg-red-600 rounded-md hover:bg-red-700"
               >
                 {t("Yopish")}
               </button>
