@@ -13,7 +13,7 @@ i18next
     fallbackLng: storage.get("i18nextLng") || "uz",
     lng: storage.get("i18nextLng") || "uz",
     supportedLngs: ["ru", "uz", "en"],
-    saveMissing: false,
+    saveMissing: true,
     interpolation: {
       escapeValue: true,
     },
