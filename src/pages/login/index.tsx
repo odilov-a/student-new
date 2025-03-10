@@ -12,14 +12,6 @@ const Login = ({ createModal }: any): JSX.Element => {
   const [isLogin, setIsLogin] = useState(true);
   let data = createModal?.data || {};
 
-  const handleSuccessRegister = (response: any) => {
-    notification.success({
-      message: get(response, "message", t("Registered successfully!")),
-      description: t("Please check your email to verify your account."),
-      duration: 3,
-    });
-  };
-
   const handleSuccess = (response: any) => {
     signIn({
       token: get(response, "data.token"),
@@ -91,7 +83,7 @@ const Login = ({ createModal }: any): JSX.Element => {
                 name="username"
                 isLoginPage={true}
                 rootClassName="mb-3"
-                placeholder={t("Login")}
+                placeholder={t("Username")}
                 component={Fields.Input}
                 setFieldTouched={setFieldTouched}
               />
@@ -133,24 +125,18 @@ const Login = ({ createModal }: any): JSX.Element => {
               value: get(data, "lastName"),
             },
             {
-              name: "email",
               type: "string",
               required: true,
-              value: get(data, "email"),
+              name: "username",
+              value: get(data, "username"),
             },
-            // {
-            //   type: "string",
-            //   required: true,
-            //   name: "username",
-            //   value: get(data, "username"),
-            // },
-            // {
-            //   type: "string",
-            //   required: true,
-            //   name: "password",
-            // },
+            {
+              type: "string",
+              required: true,
+              name: "password",
+            },
           ]}
-          onSuccess={handleSuccessRegister}
+          onSuccess={handleSuccess}
           onError={handleError}
         >
           {({ isLoading, setFieldTouched }) => (
@@ -180,11 +166,19 @@ const Login = ({ createModal }: any): JSX.Element => {
               />
               <FastField
                 required
-                name="email"
+                name="username"
                 rootClassName="mb-3"
-                placeholder={t("Email")}
+                placeholder={t("Username")}
                 component={Fields.Input}
                 setFieldTouched={setFieldTouched}
+              />
+              <FastField
+                required
+                name="password"
+                type="password"
+                rootClassName="mb-3"
+                component={Fields.Password}
+                placeholder={t("Password")}
               />
               <Button
                 size="large"
