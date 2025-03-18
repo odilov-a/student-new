@@ -1,10 +1,4 @@
-import {
-  LineChartOutlined,
-  BookOutlined,
-  BellOutlined,
-  OrderedListOutlined,
-  Html5Outlined,
-} from "@ant-design/icons";
+import { AppstoreOutlined } from "@ant-design/icons";
 
 interface MenuItem {
   key: string;
@@ -18,49 +12,49 @@ const menuItems: MenuItem[] = [
   {
     key: "problems",
     label: "Masalalar",
-    icon: <OrderedListOutlined />,
+    icon: <AppstoreOutlined />,
     route: "/problems",
   },
   {
     key: "tests",
     label: "Testlar",
-    icon: <OrderedListOutlined />,
+    icon: <AppstoreOutlined />,
     route: "/tests",
   },
   {
     key: "training",
     label: "Treninglar",
-    icon: <LineChartOutlined />,
+    icon: <AppstoreOutlined />,
     route: "/training",
   },
   {
     key: "html",
     label: "HTML&CSS",
-    icon: <Html5Outlined />,
+    icon: <AppstoreOutlined />,
     route: "/html",
   },
   {
     key: "shop",
     label: "Do'kon",
-    icon: <BookOutlined />,
+    icon: <AppstoreOutlined />,
     route: "/shop",
   },
   {
     key: "resources",
     label: "Resurslar",
-    icon: <BookOutlined />,
+    icon: <AppstoreOutlined />,
     route: "/resources",
   },
   {
     key: "histories",
     label: "Tarix",
-    icon: <BookOutlined />,
+    icon: <AppstoreOutlined />,
     route: "/histories",
   },
   {
     key: "feedback",
     label: "Fikrlar",
-    icon: <BellOutlined />,
+    icon: <AppstoreOutlined />,
     route: "/feedback",
   },
 ];

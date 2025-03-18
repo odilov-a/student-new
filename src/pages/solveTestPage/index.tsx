@@ -13,16 +13,13 @@ interface Answer {
 interface Question {
   _id: string;
   title: string;
-  type: number;
+  photoUrl: string;
   answers: Answer[];
 }
 
 interface Test {
   _id: string;
   name: string;
-  subject: {
-    title: string;
-  };
   questions: Question[];
 }
 
@@ -37,12 +34,11 @@ const SolveTestPage: React.FC = () => {
   const [selectedLang, setSelectedLang] = useState(
     localStorage.getItem("i18nextLng") || "en"
   );
-
-  const [exitCount, setExitCount] = useState(() => {
-    return Number(localStorage.getItem("exitCount")) || 0;
-  });
-
+  const [exitCount, setExitCount] = useState(
+    () => Number(localStorage.getItem("exitCount")) || 0
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const { t } = useHooks();
 
   useEffect(() => {
@@ -66,9 +62,8 @@ const SolveTestPage: React.FC = () => {
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => {
+    return () =>
       document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
   }, [exitCount]);
 
   useEffect(() => {
@@ -76,9 +71,7 @@ const SolveTestPage: React.FC = () => {
       setSelectedLang(localStorage.getItem("i18nextLng") || "en");
     };
     window.addEventListener("storage", handleLanguageChange);
-    return () => {
-      window.removeEventListener("storage", handleLanguageChange);
-    };
+    return () => window.removeEventListener("storage", handleLanguageChange);
   }, []);
 
   useEffect(() => {
@@ -93,8 +86,8 @@ const SolveTestPage: React.FC = () => {
           }
         );
         setTest(response.data.data);
-      } catch (err) {
-        console.error("Error fetching test:", err);
+      } catch (error) {
+        console.error("Error fetching test:", error);
       }
     };
     fetchTest();
@@ -124,49 +117,96 @@ const SolveTestPage: React.FC = () => {
     }
   };
 
+  const handleNext = () => {
+    if (currentQuestionIndex < (test?.questions.length || 0) - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+    }
+  };
+
   if (!test) return <p>{t("Loading")}...</p>;
 
+  const currentQuestion = test.questions[currentQuestionIndex];
+  const isLastQuestion = currentQuestionIndex === test.questions.length - 1;
+  const isFirstQuestion = currentQuestionIndex === 0;
+
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-2 text-[#FF0000] text-center">
-        {t("Test davomida oynalarni almashtirish mumkin emas!!!")}
-      </h1>
-      <h1 className="text-2xl font-bold mb-4">{test.name}</h1>
+    <div className="container mx-auto p-2">
       <div className="space-y-6">
-        {test.questions.map((q) => (
-          <div key={q._id} className="border p-4 rounded">
-            <p className="mb-2">{q.title}</p>
-            {q.type === 1 && q.answers ? (
-              <div className="space-y-2">
-                {q.answers.map((a) => (
-                  <label key={a._id} className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name={q._id}
-                      value={a._id}
-                      onChange={() => handleAnswerChange(q._id, a._id)}
-                      className="form-radio"
-                    />
-                    <span>{a.answer}</span>
-                  </label>
-                ))}
-              </div>
-            ) : (
-              <input
-                type="text"
-                onChange={(e) => handleAnswerChange(q._id, e.target.value)}
-                className="w-full p-2 border rounded"
-              />
-            )}
+        <div className="border p-5 rounded-lg shadow-md">
+          <p className="mb-2 text-2xl font-semibold text-gray-800">
+            {currentQuestion.title}
+          </p>
+          {currentQuestion.photoUrl?.[0] && (
+            <img
+              src={currentQuestion.photoUrl[0]}
+              alt={currentQuestion.title}
+              className="mb-4 w-[25%] h-[25%] max-w-md rounded-md"
+            />
+          )}
+
+          <div className="space-y-2">
+            {currentQuestion.answers.map((a) => (
+              <label
+                key={a._id}
+                className="flex items-center space-x-2 p-1 rounded hover:bg-gray-100"
+              >
+                <input
+                  type="radio"
+                  name={currentQuestion._id}
+                  value={a._id}
+                  className="form-radio h-5 w-5 text-blue-600"
+                  onChange={() =>
+                    handleAnswerChange(currentQuestion._id, a._id)
+                  }
+                  checked={answers.some(
+                    (ans) =>
+                      ans.question === currentQuestion._id &&
+                      ans.answer === a._id
+                  )}
+                />
+                <span className="text-lg font-medium text-gray-700">
+                  {a.answer}
+                </span>
+              </label>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
-      <button
-        onClick={handleSubmit}
-        className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-      >
-        {t("Submit")}
-      </button>
+
+      <div className="flex justify-between mt-6">
+        <button
+          onClick={handlePrevious}
+          disabled={isFirstQuestion}
+          className={`py-2 px-6 rounded-lg text-white font-semibold ${
+            isFirstQuestion
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-blue-600"
+          }`}
+        >
+          {t("Orqaga")}
+        </button>
+        {!isLastQuestion ? (
+          <button
+            onClick={handleNext}
+            className="py-2 px-6 rounded-lg bg-blue-500 text-white font-semibold hover:bg-blue-600"
+          >
+            {t("Oldinga")}
+          </button>
+        ) : (
+          <button
+            onClick={handleSubmit}
+            className="py-2 px-6 rounded-lg bg-[#222638] text-white font-semibold hover:bg-pink-600"
+          >
+            {t("Jo'natish")}
+          </button>
+        )}
+      </div>
 
       <Dialog
         open={isModalOpen}
@@ -176,11 +216,9 @@ const SolveTestPage: React.FC = () => {
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center">
           <Dialog.Panel className="bg-white p-6 rounded-lg shadow-lg w-96">
             <Dialog.Title className="text-lg font-semibold text-red-600 text-center">
-              {t(
-                result
-                  ? t("Test tugadi!")
-                  : t("Diqqat! Oynani almashtirish mumkin emas!")
-              )}
+              {result
+                ? t("Test tugadi!")
+                : t("Diqqat! Oynani almashtirish mumkin emas!")}
             </Dialog.Title>
             <Dialog.Description className="mt-2 text-gray-600 text-center">
               {result ? (

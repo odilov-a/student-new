@@ -1,11 +1,16 @@
 import { Exclamation, Problem } from "assets/images/icons";
-import { useHooks } from "hooks";
+import { useHooks, useGet } from "hooks";
 
 const DefaultPage = () => {
-  const { t } = useHooks();
+  const { get, t } = useHooks();
+  const { data } = useGet({ name: "students", url: "/students/me" });
+  const info = get(data, "data", {});
   return (
     <div>
       <div className="top-part dark:bg-[##222638] bg-[#F3F4F7] p-[30px] rounded-[24px] h-[65vh]">
+        <p className="text-[24px] font-[500] mb-[20px]">
+          {t("Welcome")}, {get(info, "firstName")} {get(info, "lastName")}
+        </p>
         <div className="rounded-[12px] bg-[#E6ECFE] dark:bg-[#525459] text-[#222638] dark:text-[#9EA3B5] p-[22px] w-[560px]">
           <div className="flex mb-[20px]">
             <Exclamation />
