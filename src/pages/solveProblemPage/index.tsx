@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Fireworks } from "@fireworks-js/react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { message, Tabs, Select, Button, Spin, Typography, Divider } from "antd";
 import axios from "axios";
 import CodeMirror from "@uiw/react-codemirror";
@@ -18,7 +18,6 @@ const { Title, Paragraph } = Typography;
 const SolveProblemPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const location = useLocation();
   const [problem, setProblem] = useState<any>(null);
   const [code, setCode] = useState("");
   const [language, setLanguage] = useState("javascript");
@@ -88,41 +87,6 @@ const SolveProblemPage = () => {
         return cpp();
       default:
         return javascript();
-    }
-  };
-
-  const handleRunCode = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      message.error(t("Token not found"));
-      return;
-    }
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_ROOT_API}/problems/run`,
-        { code, language },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const output = response.data.data.output;
-      const error = response.data.data.error;
-      setOutput(output);
-      setError(error);
-      if (output) {
-        message.success(t("Code executed successfully!"));
-      }
-      if (error) {
-        message.error(error);
-      }
-    } catch (err) {
-      const errorMessage =
-        (err as any).response?.data?.message?.[t("language")] ||
-        (err as any).message;
-      setError(errorMessage);
-      message.error(`Failed to run the code: ${errorMessage}`);
     }
   };
 
@@ -277,19 +241,14 @@ const SolveProblemPage = () => {
             height="300px"
           />
         </div>
-
-        <div className="flex justify-between mb-4">
-          <Button type="primary" className="bg-black" onClick={handleRunCode}>
-            {t("Run Code")}
-          </Button>
-          <Button
-            type="primary"
-            onClick={handleSubmitCode}
-            style={{ backgroundColor: "#9c27b0" }}
-          >
-            {t("Submit Code")}
-          </Button>
-        </div>
+        <Button
+          type="primary"
+          className="w-full"
+          onClick={handleSubmitCode}
+          style={{ backgroundColor: "#9c27b0" }}
+        >
+          {t("Submit Code")}
+        </Button>
         {output && (
           <div className="mt-4">
             <p>

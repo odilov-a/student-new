@@ -34,6 +34,12 @@ const menuItems: MenuItem[] = [
     route: "/html",
   },
   {
+    key: "group",
+    label: "Guruhlar",
+    icon: <AppstoreOutlined />,
+    route: "/groups",
+  },
+  {
     key: "shop",
     label: "Do'kon",
     icon: <AppstoreOutlined />,
