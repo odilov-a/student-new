@@ -47,14 +47,16 @@ const Student = () => {
       dataIndex: "memoryLimit",
       key: "memoryLimit",
       ellipsis: true,
-      render: (memoryLimit: number | null) => `${memoryLimit ? memoryLimit : 0} MB`,
+      render: (memoryLimit: number | null) =>
+        `${memoryLimit ? memoryLimit : 0} MB`,
     },
     {
       title: t("Time Limit"),
       dataIndex: "timeLimit",
       key: "timeLimit",
       ellipsis: true,
-      render: (timeLimit: number | null) => `${timeLimit ? timeLimit : 0} milliseconds`,
+      render: (timeLimit: number | null) =>
+        `${timeLimit ? timeLimit : 0} milliseconds`,
     },
     {
       title: t("Failed Test Cases"),
@@ -64,7 +66,7 @@ const Student = () => {
       render: (failedTestCaseIndex: number | null) =>
         failedTestCaseIndex !== null
           ? `${failedTestCaseIndex} test case failed`
-          : "No failures",
+          : t("No failures"),
     },
   ];
 

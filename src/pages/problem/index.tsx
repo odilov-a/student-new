@@ -78,7 +78,7 @@ const Problem = () => {
         }
       );
       setFilteredItems(response.data.data);
-    } catch (err) {
+    } catch (error) {
       message.error(t("Failed to fetch search results"));
     }
   };
@@ -91,7 +91,7 @@ const Problem = () => {
         onChange={(e) => handleSearch(e.target.value)}
         className="mb-4"
       />
-      <Container.All name="problems" url="/problems">
+      <Container.All name="problems" url="/problems/false">
         {({ items }) => (
           <div className="flex-grow overflow-auto">
             <Table
