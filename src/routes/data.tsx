@@ -10,7 +10,7 @@ const Training = lazy(() => import("pages/training"));
 const Feedback = lazy(() => import("pages/feedback"));
 const Resource = lazy(() => import("pages/resource"));
 const Test = lazy(() => import("pages/test"));
-const Group = lazy(() => import("pages/group"));
+// const Group = lazy(() => import("pages/group"));
 const SolveTestPage = lazy(() => import("pages/solveTestPage"));
 const HtmlTraining = lazy(() => import("pages/htmlCssCompiler"));
 const SolveProblemPage = lazy(() => import("pages/solveProblemPage"));
@@ -97,12 +97,12 @@ const privateRoutes: IRoute[] = [
     title: "Tarix",
     element: <History />,
   },
-  {
-    path: "/groups",
-    key: "groups",
-    title: "Guruhlar",
-    element: <Group />,
-  },
+  // {
+  //   path: "/groups",
+  //   key: "groups",
+  //   title: "Guruhlar",
+  //   element: <Group />,
+  // },
   {
     path: "*",
     key: "*",

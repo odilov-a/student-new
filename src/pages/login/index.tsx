@@ -99,7 +99,6 @@ const Login = ({ createModal }: any): JSX.Element => {
                 size="large"
                 htmlType="submit"
                 isLoading={isLoading}
-                className="w-full h-auto"
                 title={isLoading ? t("Please wait a second") : t("Log in")}
               />
             </div>
@@ -184,7 +183,6 @@ const Login = ({ createModal }: any): JSX.Element => {
                 size="large"
                 htmlType="submit"
                 isLoading={isLoading}
-                className="w-full h-auto"
                 title={isLoading ? t("Please wait a second") : t("Register")}
               />
             </div>
