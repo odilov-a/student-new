@@ -91,7 +91,7 @@ const Problem = () => {
         onChange={(e) => handleSearch(e.target.value)}
         className="mb-4"
       />
-      <Container.All name="problems" url="/problems/false">
+      <Container.All name="problems" url="/problems">
         {({ items }) => (
           <div className="flex-grow overflow-auto">
             <Table
